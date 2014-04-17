@@ -1,4 +1,4 @@
-bioguide: V000129 
+bioguide: V000129
 contact_form:
   method: get
   action: /forms/writeyourrep
@@ -13,7 +13,7 @@ contact_form:
         - value: Submit
           selector: "form.zipform input[type='submit'][value='Submit']"
     - find:
-        - selector: "#aspnetForm"
+        - selector: "#writeRepForm"
     - fill_in:
         - name: ctl00$ctl14$FirstName
           selector: "#ctl00_ctl14_FirstName"
@@ -46,7 +46,7 @@ contact_form:
         - name: ctl00$ctl14$Subject
           selector: "#ctl00_ctl14_Subject"
           value: $SUBJECT
-          required: true
+          required: false
         - name: ctl00$ctl14$Body
           selector: "#ctl00_ctl14_Body"
           value: $MESSAGE
@@ -71,6 +71,86 @@ contact_form:
             - Miss
             - Dr.
             - Mr. and Mrs.
+        - name: ctl00$ctl14$State
+          selector: "#ctl00_ctl14_State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options:
+            - AL
+            - AK
+            - AZ
+            - AR
+            - CA
+            - CO
+            - CT
+            - DE
+            - DC
+            - FL
+            - GA
+            - HI
+            - ID
+            - IL
+            - IN
+            - IA
+            - KS
+            - KY
+            - LA
+            - ME
+            - MD
+            - MA
+            - MI
+            - MN
+            - MS
+            - MO
+            - MT
+            - NE
+            - NV
+            - NH
+            - NJ
+            - NM
+            - NY
+            - NC
+            - ND
+            - OH
+            - OK
+            - OR
+            - PA
+            - RI
+            - SC
+            - SD
+            - TN
+            - TX
+            - UT
+            - VT
+            - VA
+            - WA
+            - WV
+            - WI
+            - WY
+            - AA
+            - AE
+            - AP
+            - FM
+            - GU
+            - MH
+            - MP
+            - PR
+            - VI
+        - name: ctl00$ctl14$IssuesList
+          selector: "#ctl00_ctl14_IssuesList"
+          value: $TOPIC
+          required: true
+          options:
+            Agriculture: "103620"
+            Defense and Military: "103533"
+            Economy and Jobs: "103621"
+            Energy: "103623"
+            Environment: "103624"
+            General Government: "103591"
+            Healthcare: "103627"
+            Immigration: "103628"
+            Social Security and Medicare: "103630"
+            Transportation and Infrastructure: "103631"
     - click_on:
         - value: Submit
           selector: "#ctl00_ctl14_SubmitButton"
@@ -78,5 +158,4 @@ contact_form:
     headers:
       status: 200
     body:
-      contains: "Thank you for taking the time to contact me. It is an honor and a privilege to serve you in California’s 21st Congressional District."
-
+      contains: "Thank you for taking the time to contact me. It is an honor and a privilege to serve you in California’s 21st Congressional District.\n- See more at: http://valadao.house.gov/forms/writeyourrep/?Confirmation=true#sthash.qrHSU2cp.dpuf"
